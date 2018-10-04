@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My Bookmarks | Thinkful App</title>
+  <meta name="description" content="Save your favorite website's for future reference.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/grid.css">
+  <link rel="stylesheet" href="styles/icons.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  <header>
+    <div class="row">
+      <div class="col-12">
+        <div class="logo">
+            <h1>My Bookmarks</h1>
+        </div>
+
+
+      <select id="rating-select" class="form-control">
+              <option value="0">-- Filter By Rating -- </option>
+              <option value="1">1+ Stars</option>
+              <option value="2">2+ Stars</option>
+              <option value="3">3+ Stars</option>
+              <option value="4">4+ Stars</option>
+              <option value="5">5+ Stars</option>
+      </select>
+      </div>
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="col 12">
+      <form id="js-create-bookmark">
+          <label for="bookmark-list-entry">Bookmark Title</label>
+          <input type="text" name="title" class="js-bookmark-title-entry"  id="bookmark-title" placeholder="Bookmark Title">
+          <label for="bookmark-list-entry">Rating</label>
+          <input type="text" name="rating" class="js-bookmark-rating-entry" id="bookmark-rating" placeholder="Rating">
+          <label for="bookmark-list-entry">Description</label>
+          <input type="text" name="desc" class="js-bookmark-description-entry" id="bookmark-description" placeholder="Description">
+          <label for="bookmark-list-entry">URL</label>
+          <input type="text" name="url" class="js-bookmark-url-entry" id="bookmark-url" placeholder="URL">
+          <button type="submit">Add item</button>
+        </form>
+      </div>
+  </div>
+
+  <div class="js-bookmark-list">
+    <!--HTML GOES HERE-->
+  </div>
+    
+
+  
+
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="scripts/store.js"></script>
+  <script src="scripts/api.js"></script>
+  <script src="scripts/bookmarkList.js"></script>
+  <script src="scripts/index.js"></script>
+</body>
+
+</html>
