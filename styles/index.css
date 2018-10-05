@@ -1,0 +1,269 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+header h1 {
+  float: left;
+  line-height: 1;
+  margin-bottom: 0;
+  padding: 20px;
+}
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding-bottom: 60px;
+  overflow-x: hidden;
+  color: #797979;
+  font-size: 14px;
+  background-color: #f1f1f1;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  color: #666f7b;
+  margin: 10px 0;
+}
+
+.h4 h4 {
+  font-size: 24px;
+}
+
+.wrapper {
+  padding-top: 75px;
+}
+
+.container-fluid {
+  max-width: 95%;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.dropdown-filter {
+  float: right;
+  max-width: 30%;
+  display: block;
+  line-height: 1.5;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  padding: 7px 12px;
+  height: 40px;
+  font-size: 14px;
+  display: block;
+  background-color:#ffffff;
+}
+
+/* Header & Page Title Styles */
+
+#top-banner {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  min-height: 70px;
+  background-color: #343a40;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.page-title-box {
+    padding: 22px 0;
+}
+
+.page-title-box .page-title {
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 600;
+}
+
+
+
+/* Main Body Styles */
+
+.frame-box {
+  padding: 20px;
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  background-color: #ffffff
+}
+
+.header-title {
+  border-radius: 3px 3px 0 0;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Form Styles */
+
+.form-description {
+  color: #98a6ad;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  color: #313a46;
+  font-size: 14px;
+  color: #313a46;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.5;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  padding: 7px 12px;
+  height: 40px;
+  font-size: 14px;
+  display: block;
+  background-color:#ffffff;
+}
+
+input {
+  overflow: visible;
+  -webskit-appearance: textfield;
+}
+
+.form-button {
+  border-radius: 2px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #32c861;
+  border: 1px solid #32c861;
+  color: #ffffff; 
+  padding: 9px 18px;
+}
+
+/* Bookmark Styles */
+
+.bookmark {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0, .125);
+  border-radius: 1px;
+  margin-bottom: 30px;
+  background-clip: border-box;
+}
+
+.bookmark-heading {
+  border-radius: 1px 1px 0 0;
+  margin-top: 0;
+  padding: 12px 15px;
+  background-color: #363C4F;
+  border-bottom: 1px solid rgba(0,0,0, .125);
+  color: #ffffff;
+}
+
+.bookmark-title { 
+  float: left;
+  color: #ffffff;
+  margin: 0px;
+}
+
+.bookmark-control {
+  display: inline-block;
+  float: right;
+  font-size: 18px;
+  padding-left: 15px;
+  position: relative;
+  text-align: right;
+}
+
+.bookmark-extra {
+  flex: 1 1 auto;
+  padding: 15px;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.bookmark-description {
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: #6c757d;
+  font-size: 14px;
+  width: 100%;
+  letter-spacing: 0.03em;
+}
+
+.bookmark-link {
+  border-radius: 2px;
+  font-size: 14px;
+  padding: 7px 14px;
+  background-color: #64c5b1;
+  border: 1px solid #64c5b1;
+  color: #ffffff;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.bookmark-rating {
+  font-size: 16px;
+  border-radius: 0 0 1px 1px;
+  padding: 12px 20px;
+  background-color: rgba(0,0,0,.03); 
+  letter-spacing: 0.03em;
+}
+
+.filled-star {
+  color: #f96a74;
+}

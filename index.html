@@ -10,53 +10,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/grid.css">
   <link rel="stylesheet" href="styles/icons.css">
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
-  <header>
-    <div class="row">
-      <div class="col-12">
-        <div class="logo">
-            <h1>My Bookmarks</h1>
-        </div>
-
-
-      <select id="rating-select" class="form-control">
-              <option value="0">-- Filter By Rating -- </option>
-              <option value="1">1+ Stars</option>
-              <option value="2">2+ Stars</option>
-              <option value="3">3+ Stars</option>
-              <option value="4">4+ Stars</option>
-              <option value="5">5+ Stars</option>
-      </select>
+  <nav role="banner" id="top-banner">
+    <div class="top-banner">
+      <div class="container-fluid">
+          <h1 class="logo">Thinkful Marks</h1>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <div class="row">
-    <div class="col 12">
-      <form id="js-create-bookmark">
-          <label for="bookmark-list-entry">Bookmark Title</label>
-          <input type="text" name="title" class="js-bookmark-title-entry"  id="bookmark-title" placeholder="Bookmark Title">
-          <label for="bookmark-list-entry">Rating</label>
-          <input type="text" name="rating" class="js-bookmark-rating-entry" id="bookmark-rating" placeholder="Rating">
-          <label for="bookmark-list-entry">Description</label>
-          <input type="text" name="desc" class="js-bookmark-description-entry" id="bookmark-description" placeholder="Description">
-          <label for="bookmark-list-entry">URL</label>
-          <input type="text" name="url" class="js-bookmark-url-entry" id="bookmark-url" placeholder="URL">
-          <button type="submit">Add item</button>
-        </form>
+  <main role="main">
+    <div class="wrapper">
+      <div class="container-fluid">
+        
+        <!-- Page Title -->
+        <header class="page-title">
+          <div class="row">
+            <div class="col-12">
+              <div class="page-title-box">
+                <h2 class="page-title">Your Saved Bookmarks</h2>
+              </div>
+            </div>
+          </div>
+        </header>
+        <!-- End of Page Title -->
+
+        <!-- Main Body of Page-->
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Controls-->
+            <section class="page-controls">
+              <div class="frame-box">
+                <h3 class="header-title">Save a New Bookmark</h3>
+                <p class="form-description">
+                  Use the form below to save a new bookmark. Please note that both the Title, and the URL are required.
+                </p> 
+                <div class="row">
+                  <div class="col-12">
+                    <!-- Create Bookmark Form -->
+                    <form class="form-inline" role="add-bookmark" id="js-create-bookmark">
+                      <!-- Title Input-->
+                      <div class="form-group">
+                        <label for="bookmark-title">Bookmark Title*</label>
+                        <input type="text" name="title" class="form-control js-bookmark-title-entry" id="bookmark-title" maxlength="120" placeholder="Title of your bookmark...">
+                      </div>
+                      <!-- End Title Input-->
+                      <!-- Rating Input-->
+                      <div class="form-group">
+                        <label for="bookmark-rating">Bookmark Rating (1-5)</label>
+                        <input type="number" name="rating" class="form-control js-bookmark-rating-entry"  id="bookmark-rating" type="text" min="1" max="5" placeholder="Rating between 1 -5.">
+                      </div>
+                      <!-- End Rating Input-->
+                      <!-- Description Input-->
+                      <!-- Need to add large text area box-->
+                      <div class="form-group">
+                        <label for="bookmark-desc">Bookmark Description</label>
+                        <input type="text" name="desc" class="form-control js-bookmark-description-entry"  id="bookmark-desc" maxlength="120" rows="3" type="text" placeholder="Max 120 Characters">
+                      </div>
+                      <!-- End Description Input--> 
+                      <!-- URL Input-->
+                      <div class="form-group">
+                        <label for="bookmark-url">Bookmark URL<sup>*</sup></label>
+                        <input type="url" name="url" class="form-control js-bookmark-url-entry"  id="bookmark-url" required type="text" placeholder="Start with http:// or https://">
+                      </div>
+                        <!-- End Description Input-->   
+                      <div class="form-group">
+                          <button class="form-button" type="submit">Create Bookmark</button>
+                      </div>
+                    </form>
+
+                  </div>
+
+                </div>
+
+              
+              </div>
+            </section>
+            <!-- End of Controls-->
+
+            <!-- Bookmarks Section-->
+            <section>
+              <!-- Bookmarks Title -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="page-title-box">
+                    <select id="rating-select" class="dropdown-filter">
+                      <option value="0">-- Filter By Rating -- </option>
+                      <option value="1">1+ Stars</option>
+                      <option value="2">2+ Stars</option>
+                      <option value="3">3+ Stars</option>
+                      <option value="4">4+ Stars</option>
+                      <option value="5">5+ Stars</option>
+                    </select>
+                    <h2 class="page-title">Your Saved Bookmarks</h2>
+                  </div>
+                </div>
+              </div>
+              <!-- End of bookmarks Title Title -->
+
+              <!-- Dynamically Insert HTML HERE-->
+              <div class="js-bookmark-list">
+
+
+              </div>
+              <!-- End Dynamically Insert HTML-->
+            </section>
+          <!--End of Bookmark Section-->
+          </div>
+        </div>
+        <!-- Main Body of Page-->
+        <!-- Error Container -->
+        <div class="row">
+            <div class="error-container">
+              <!-- Insert Error Here -->
+            </div>
+        </div>
+        <!-- End of Error Container -->
+
       </div>
-  </div>
+    </div>
 
-  <div class="js-bookmark-list">
-    <!--HTML GOES HERE-->
-  </div>
-    
-
-  
-
+  </main>
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

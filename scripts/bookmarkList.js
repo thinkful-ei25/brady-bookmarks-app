@@ -2,56 +2,75 @@
 
 const bookmarkList = (function() {
 
+  function handleError(err) {
+    let errorMessage = '';
+    if (err.responseJSON && err.responseJSON.message) {
+      errorMessage = err.responseJSON.message;
+    } else {
+      errorMessage = `${err.code} Server Error`;
+    }
+    return `
+      <section class ="error-body">
+        <button id="close-error">X</button>
+        <p>${errorMessage}</p>
+      </section>
+    `;
+  }
+
   function generateBookmarkElement(item) {
-    //HTML Elements that Will Change: Ratings, Expanded State, Icon in Top Left
-    //console.log('gemeratebookmarkelement ran' + item);
-    //Initialize ratingCss as an empty string which we will update below based on ratings input;
-    let ratingCss = '';
-
-    //viewStateIcon checks the expanded property of the passed in item and determines which icon to display.
-    const viewStateIcon = item.expanded ?  'mdi-minus' : 'mdi-arrow-expand';
-
-    // bookmarkItem is what we will add to the HTML page, and we are starting it as a column.
-    let bookmarkItem = `<div class="col-4">`;
+    // Determine Number of Stars
+    let bookmarkItem = '';
     
-    //Look at the number associated with the item's rating and determine how many stars we will display. 
-    //For loop will loop as many times as the rating and add a star to ratingCss.
+    let ratingCss = '';
     for(let i = 0; i < item.rating; i++) {
       ratingCss += '<i class="fa fa-star filled-star"></i>';
     }
+    
+    //Determine expanded State icon
+    const viewStateIcon = item.expanded ?  'mdi-minus' : 'mdi-arrow-expand';
+    
+    //Determine expanded status
+    let expandedItem = '';
+    if(item.expanded) {
+      expandedItem = `
+        <div class="bookmark-extra">
+          <p class="bookmark-description">${item.desc}</p>
+          <a href="${item.url}" target="_blank" class="form-button margin-top">Go somewhere</a>
+        </div>
+      `;
+    }
+    let newRowStart = '';
+    let newRowEnd = '';
 
-  
-   //The default state of a bookmark will be the closed state, which only contains the item and rating.
-   //The below html will be added to the div created above.
-      //add a bookmark with the item.id, item.title, viewStateIcon, and ratingCss
-    bookmarkItem +=       
-        ` <div class="js-bookmark-element" data-bookmark-id="${item.id}">  
-          <div class="bookmark-heading">
-            <h3 class="bookmark-title">${item.title}</h3>
+    if (store.bookmarks.indexOf(item) !== 0 && store.bookmarks.indexOf(item) %3 === 0 ){
+      newRowStart = '<div class="row">';
+      newRowEnd = '</div>';
+    }
+
+    if(store.bookmarks.indexOf(item) === 0) {
+      newRowStart = '<div class="row">';
+      newRowEnd = '';
+    }
+
+    bookmarkItem = `
+      ${newRowEnd}
+      ${newRowStart}
+        <div class="col-4">
+          <div class=" bookmark js-bookmark-element" data-bookmark-id="${item.id}">  
+            <div class="bookmark-heading">
+              <h3 class="bookmark-title">${item.title}</h3>
             <div class="bookmark-control">
               <i class="mdi ${viewStateIcon} js-bookmark-toggle"></i>
               <i class="mdi mdi-close js-bookmark-delete"></i>
             </div>
-            <p>&nbsp;</p>
           </div>
+          ${expandedItem}
           <div class="bookmark-rating">
-            <p>Rating:<span>${ratingCss}</span></p>
-          </div> `
-      ;
-
-    // ADD THE EXPANDED INFORMATION TO THE DEFAULT ITEM  
-    if(item.expanded) {
-      bookmarkItem += 
-        `<p class="bookmark-description js-bookmark-description">${item.desc}</p>
-        <button type="button" class="button js-bookmark-button"> View Website </button> 
-        `; //Need to add url
-      }
-
-      //CLOSE UP THE BOOKMARKITEM WITH TWO CLOSE DIVS
-      bookmarkItem +=
-      `</div> </div>`;
-
-      //console.log('generate bookmark element ran:' + bookmarkItem);
+            ${ratingCss}
+          </div> 
+          </div>
+        </div>
+      `;  
 
       return bookmarkItem;
   }
@@ -59,9 +78,8 @@ const bookmarkList = (function() {
   //Passing in all of our bookmarks, we will run each of them through the function above which creates an array which we assign to items.
   //We then join this array into a string and return that variable.
   function generateBookmarkItemsString(bookmarkList) {
-    //console.log(bookmarkList);
     const items = bookmarkList.map((item) => generateBookmarkElement(item));
-    //console.log('generateBookmarkItemsString ran' + items.join(''));
+    //console.log(items);
     return items.join('');
   }
 
@@ -71,7 +89,13 @@ const bookmarkList = (function() {
   // we create a bookmarkListItemsString and set it to equal the value we get back after sending the items as a single html string.
   //We insert this into the div we created in index.html
   function render() {
-    // console.log('render ran');
+    if(store.error) {
+      const el = handleError(store.error);
+      $('.error-container').html(el);
+    } else {
+      $('.error-container').html('');
+    }
+
     let items = store.bookmarks;
     items = items.filter(item => item.rating >= store.filters);
     const bookmarkListItemsString = generateBookmarkItemsString(items);
@@ -107,7 +131,11 @@ const bookmarkList = (function() {
       api.createBookmark(newBookmark, (newItem) => {
         store.addBookmark(newItem);
         render();
-      });
+      }, (err) => {
+        store.setError(err);
+        render();
+        }
+      );
 
     });
   }
@@ -118,7 +146,6 @@ const bookmarkList = (function() {
       .data('bookmark-id');
   }
 
-  //Need to figure out how to grab element id
   function handleBookmarkExpand() {
     $('.js-bookmark-list').on('click', '.js-bookmark-toggle', event => {
       const id = getBookmarkIdFromElement(event.currentTarget);
@@ -130,7 +157,6 @@ const bookmarkList = (function() {
   }
 
   function handleDeleteBookmarkClick() {
-    //listen for a click of the X button
     $('.js-bookmark-list').on('click', '.js-bookmark-delete', event => {
       const id = getBookmarkIdFromElement(event.currentTarget);
       const deleteBookmark = store.bookmarks.find(item => item.id === id);
@@ -139,10 +165,6 @@ const bookmarkList = (function() {
         render();
       });
     });
-
-    // delete item from api
-    //delete iteom from the store
-    //reRender
   }
 
   function handleFilterBookmarksClick() {
@@ -151,18 +173,21 @@ const bookmarkList = (function() {
      store.toggleFilterRatings(selectedVal);
       render();
     });
-    //listen for a click of the bookmark filter
-    //recieve the input and pass it to the store.filter
-    //render
-    //console.log('handleFilterBookmarksClick ran');
+  }
 
+  function handleCloseError() {
+    $('.error-container').on('click', '#close-error', () => {
+      store.setError(null);
+      render();
+    })
   }
 
   function bindEventListeners() {
     handleNewBookmarkSubmit(),
     handleBookmarkExpand(),
     handleDeleteBookmarkClick(),
-    handleFilterBookmarksClick()
+    handleFilterBookmarksClick(),
+    handleCloseError();
   }
 
   return {

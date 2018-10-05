@@ -9,8 +9,7 @@ $(document).ready(function() {
     bookmarks.forEach(function(item) {
       item.expanded = false;
       store.addBookmark(item);
-    
+      bookmarkList.render();
     });
-    bookmarkList.render();
   });
 });

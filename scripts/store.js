@@ -3,6 +3,10 @@
 
 
 const store = (function() {
+
+    const setError = function(error) {
+      this.error = error;
+    }
   
   function addBookmark(item) {
     this.bookmarks.push(item);;
@@ -36,6 +40,9 @@ const store = (function() {
     bookmarks: [],
     adding: false,
     filters: 0,
+    error: null, 
+
+    setError,
     toggleExpandView,
     addBookmark,
     findAndDelete,

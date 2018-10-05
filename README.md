@@ -14,10 +14,9 @@
 * [x] I can click on a bookmark to display the "detailed view.
     * [x] Detailed view expands to additionally display description and a "Visit Site" link
 * [x] I can remove bookmarks from my bookmakr list
-* [ ] I receive appropriate feedback when I cannot submit a bookmark
-    * [ ] Check all validations in the API documentation (e.g. title and url field required)
+* [x] I receive appropriate feedback when I cannot submit a bookmark
+    * [x] Check all validations in the API documentation (e.g. title and url field required)
 * [x] I can select from a dropdown a minimum rating to filter the list by all bookmarks rated above the chosen selection
-* [ ] (Extension) I can edit the rating and description of a bookmark in my list
 
 ## Techincal Requirements ##
 

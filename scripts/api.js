@@ -7,14 +7,15 @@ const api = (function() {
     $.getJSON(`${BASE_URL}/bookmarks`, callback);
   }
 
-  function createBookmark(newBookmark, callback) {
+  function createBookmark(newBookmark, onSuccess, onError) {
     const jsonData = JSON.stringify(newBookmark);
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',
       contentType: 'application/json',
       data: jsonData,
-      success: callback
+      success: onSuccess,
+      error: onError,
     });
   }
 
