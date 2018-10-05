@@ -33,9 +33,3 @@
 * Follow a11y best practices
 
 
-
-## Process ##
-
-1. Upon loading the page, the user will see a blank page, with the ability to add their first bookmark which will display as a placeholder.
-    * Once they add a bookmark, the placeholder will shift it's position and the bookmark they added will appear in the first position.
-2. 
